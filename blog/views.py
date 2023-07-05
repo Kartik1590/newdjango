@@ -56,7 +56,7 @@ class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         form.instance.author=self.request.user
         return super().form_valid(form)
-    def test_func(self) -> bool | None:
+    def test_func(self):
         post=self.get_object()
         if self.request.user==post.author:
             return True
@@ -65,7 +65,7 @@ class PostDeleteView(DeleteView):
     model=Posts
     template_name='delete.html'
     success_url='/'
-    def test_func(self) -> bool | None:
+    def test_func(self):
         post=self.get_object()
         if self.request.user==post.author:
             return True
