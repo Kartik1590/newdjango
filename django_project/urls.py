@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include,reverse
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
     path('',include('blog.urls')),
     path('users/',include('users.urls')),
+
     
 ]
+urlpatterns+=staticfiles_urlpatterns()
