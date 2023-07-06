@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -82,14 +83,14 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse('postgres://django_postgredb_user:bFdkoQSdGEcVUuEAbhyaEnJ2lbACQ4BK@dpg-ciioe3dph6erq6k907l0-a.singapore-postgres.render.com/django_postgredb')
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+    'default':{ dj_database_url.parse('postgres://django_postgredb_user:bFdkoQSdGEcVUuEAbhyaEnJ2lbACQ4BK@dpg-ciioe3dph6erq6k907l0-a.singapore-postgres.render.com/django_postgredb')
+        
         # 'ENGINE': 'django.db.backends.postgresql',
         # 'NAME':'Addu',
-        # 'USER':'django_postgredb_user',
-        # 'PASSWORD':'bFdkoQSdGEcVUuEAbhyaEnJ2lbACQ4BK',
-        # 'HOST':'dpg-ciioe3dph6erq6k907l0-a'
+        # 'USER':'postgres',
+        # 'PASSWORD':'1234',
+        # 'HOST':'localhost'
+    }
     
 }
 
@@ -128,7 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/blog/'
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 # STATICFILES_DIRS =[
 #     os.path.join(BASE_DIR,'static')
@@ -152,3 +153,12 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER=os.environ.get('my_email')
 EMAIL_HOST_PASSWORD=os.environ.get('email_password')
+
+AWS_ACCESS_KEY_ID=os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY=os.environ.get('AWS_ACCESS_SECREAT_KEY_ID')
+AWS_STORAGE_BUCKET_NAME=os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
