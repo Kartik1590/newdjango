@@ -21,7 +21,7 @@
   {%for num in page_obj.paginator.page_range %}
   {% if page_obj.number == num %}
   <a href="?page={{num}}" class="btn btn-primary rounded disabled mb4">{{num}}</a>
-  {% elif  num > page_obj.number|add:'-2' and num < page_obj.number|add:'2'  %}
+  {% elif  num > page_obj.number|add:'-2' and num < page_obj.number|add:'5'  %}
   <a href="?page={{num}}" class="btn btn-outline-info  mb4">{{num}}</a>
   {%endif%}
   {% endfor %}
